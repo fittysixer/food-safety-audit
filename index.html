@@ -417,6 +417,45 @@
             .fg-tracker-pill .tracker-value { font-size: 12px; }
         }
 
+        /* === TABLET (iPad portrait/landscape) — touch-friendly tuning === */
+        /* Specialists are using this on iPads in the field. */
+        @media (min-width: 600px) and (max-width: 1024px) {
+            /* Tighten score tracker so all 5 pills fit comfortably with labels */
+            .fg-score-tracker-inner { gap: 8px; padding: 0 12px; }
+            .fg-tracker-pill { padding: 6px 9px; gap: 4px; }
+            .fg-tracker-pill .tracker-label { font-size: 9px; letter-spacing: 0.6px; }
+            .fg-tracker-pill .tracker-value { font-size: 13px; }
+            .fg-tracker-divider { height: 16px; }
+            /* Hide long brand text — keep only the FG monogram so pills get more room */
+            .fg-tracker-logo-text span:last-child { display: none; }
+            .fg-tracker-logo-text span:nth-child(2) { display: none; }
+        }
+
+        /* Touch targets — Apple HIG says 44pt minimum.
+           Bump small score buttons and pills so fingers (not styluses) hit them reliably. */
+        @media (pointer: coarse), (min-width: 600px) and (max-width: 1024px) {
+            /* Score selector buttons (1/2/3/4/5 rating chips) */
+            .fg-score-btn,
+            button[data-score-btn],
+            .fg-pill-btn {
+                min-height: 44px !important;
+                min-width: 44px !important;
+                padding: 10px 14px !important;
+                font-size: 14px !important;
+            }
+            /* Generic small action buttons inside the assessment */
+            .fg-touch-target {
+                min-height: 44px !important;
+                min-width: 44px !important;
+            }
+            /* Make the location-type chips (Strip Mall / Free Standing / etc.) finger-friendly */
+            button[data-location-type] {
+                min-height: 44px !important;
+                padding: 10px 12px !important;
+                font-size: 13px !important;
+            }
+        }
+
         /* === ANIMATIONS === */
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
@@ -2382,7 +2421,7 @@
                                         <label className="block text-gray-400 text-xs font-semibold mb-2 heading-spaced">LOCATION TYPE</label>
                                         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                                             {LOCATION_TYPES.map(lt => (
-                                                <button key={lt.value} onClick={() => setLocationType(lt.value)}
+                                                <button key={lt.value} data-location-type={lt.value} onClick={() => setLocationType(lt.value)}
                                                     className="p-2.5 rounded-lg font-semibold text-center transition-all"
                                                     style={{
                                                         background: locationType === lt.value ? 'rgba(var(--fg-red-rgb),0.15)' : 'rgba(255,255,255,0.03)',
