@@ -2383,12 +2383,14 @@
                                         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                                             {LOCATION_TYPES.map(lt => (
                                                 <button key={lt.value} onClick={() => setLocationType(lt.value)}
-                                                    className="p-2.5 rounded-lg text-xs font-semibold text-center transition-all"
+                                                    className="p-2.5 rounded-lg font-semibold text-center transition-all"
                                                     style={{
                                                         background: locationType === lt.value ? 'rgba(var(--fg-red-rgb),0.15)' : 'rgba(255,255,255,0.03)',
                                                         border: `1px solid ${locationType === lt.value ? 'rgba(var(--fg-red-rgb),0.4)' : 'rgba(255,255,255,0.06)'}`,
                                                         color: locationType === lt.value ? '#f87171' : 'rgba(255,255,255,0.5)',
                                                         cursor: 'pointer',
+                                                        whiteSpace: 'nowrap',
+                                                        fontSize: '11px',
                                                     }}>
                                                     {lt.label}
                                                 </button>
